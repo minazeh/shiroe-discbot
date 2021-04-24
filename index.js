@@ -149,7 +149,8 @@ client.on('message', message => {
         .setDescription(`${message.author}, please refer below to properly organize a party.`)
         .addField('Dungeon Code', 'et - Endless Tower\noracle-hard - Oracle Hard\noracle-nm - Oracle Nightmare\nboc - Battle of Cake\npurga - Purgatory\nttb - Thanatos Tower • Brave\nttl - Thanatos Tower • Legend\nec - Echoing Corridor')
         .addField('Call Time', '<time><am/pm> (Do not include a space in between)')
-        .addField('Example', '~organize oracle-nm 10am');
+        .addField('Example', '~organize oracle-nm 10am')
+        .addField('Note', 'Please only use this command on #weekly-runs channel!');
 
         message.channel.send(notificationSquad);
 
@@ -281,6 +282,17 @@ client.on('message', message => {
       message.channel.send(organize);
       message.channel.send(organize_list);
       message.channel.send(`.\n<@&${roleID}>`);
+    } else {
+      const notificationSquad = new MessageEmbed()
+        .setTitle('Dungeon Party Organizer - Help')
+        .setColor(0xFFFF00)
+        .setDescription(`${message.author}, please refer below to properly organize a party.`)
+        .addField('Dungeon Code', 'et - Endless Tower\noracle-hard - Oracle Hard\noracle-nm - Oracle Nightmare\nboc - Battle of Cake\npurga - Purgatory\nttb - Thanatos Tower • Brave\nttl - Thanatos Tower • Legend\nec - Echoing Corridor')
+        .addField('Call Time', '<time><am/pm> (Do not include a space in between)')
+        .addField('Example', '~organize oracle-nm 10am')
+        .addField('Note', 'Please only use this command on #weekly-runs channel!');
+
+        message.channel.send(notificationSquad);
     }
 
     const organizeNotice = new MessageEmbed()
