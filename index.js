@@ -147,7 +147,7 @@ client.on('message', message => {
         .setTitle('Dungeon Party Organizer - Help')
         .setColor(0xFFFF00)
         .setDescription(`${message.author}, please refer below to properly organize a party.`)
-        .addField('Dungeon Code', 'et - Endless Tower\noracle-hard - Oracle Hard\noracle-nm - Oracle Nightmare\nboc - Battle of Cake\npurga - Purgatory\nttb - Thanatos Tower • Brave\nttl - Thanatos Tower • Legend\nec - Echoing Corridor')
+        .addField('Dungeon Code', 'et - Endless Tower\noracle-hard - Oracle Hard\noracle-nm - Oracle Nightmare\nboc - Battle of Cake\npurga - Purgatory\nttb - Thanatos Tower • Brave\nttl - Thanatos Tower • Legend\nec - Echoing Corridor\nvr - Valhalla Ruins')
         .addField('Call Time', '<time><am/pm> (Do not include a space in between)')
         .addField('Example', '~organize oracle-nm 10am')
         .addField('Note', 'Please only use this command on #weekly-runs channel!');
@@ -157,7 +157,7 @@ client.on('message', message => {
     } else if (args[0] === 'oracle-nm') {
 
       let startTime = 'ASAP';
-      let callTime = 'The dungeon run will start immediately once party has been organized.\n.';
+      let callTime = 'The dungeon run will start immediately once the party has been organized.\n.';
 
       if (args[1]) {
         callTime = `The dungeon run will start later around ${args[1]}\n.`;
@@ -173,7 +173,7 @@ client.on('message', message => {
     } else if (args[0] === 'ttb') {
 
       let startTime = 'ASAP';
-      let callTime = 'The dungeon run will start immediately once party has been organized.\n.';
+      let callTime = 'The dungeon run will start immediately once the party has been organized.\n.';
 
       if (args[1]) {
         callTime = `The dungeon run will start later around ${args[1]}\n.`;
@@ -189,7 +189,7 @@ client.on('message', message => {
     } else if (args[0] === 'ttl') {
 
       let startTime = 'ASAP';
-      let callTime = 'The dungeon run will start immediately once party has been organized.\n.';
+      let callTime = 'The dungeon run will start immediately once the party has been organized.\n.';
 
       if (args[1]) {
         callTime = `The dungeon run will start later around ${args[1]}\n.`;
@@ -205,14 +205,14 @@ client.on('message', message => {
     } else if (args[0] === 'oracle-hard') {
 
       let startTime = 'ASAP';
-      let callTime = 'The dungeon run will start immediately once party has been organized.';
+      let callTime = 'The dungeon run will start immediately once the party has been organized.';
 
       if (args[1]) {
         callTime = `The dungeon run will start later around ${args[1]}\n.`;
         startTime = args[1];
       }
 
-      const organize = ` ${message.author} is organizing an Oracle Hard party!\nCopy and list out your name on the list below.\n.\n${callTime}`;
+      const organize = ` ${message.author} is organizing an Oracle the Hard party!\nCopy and list out your name on the list below.\n.\n${callTime}`;
       const organize_list = `\nOracle Hard - ${startTime}\n1. ${message.author}\n2.\n3.\n4.\n5.\n6.`;
 
       message.channel.send(organize);
@@ -221,7 +221,7 @@ client.on('message', message => {
     } else if (args[0] === 'boc') {
 
       let startTime = 'ASAP';
-      let callTime = 'The dungeon run will start immediately once party has been organized.\n.';
+      let callTime = 'The dungeon run will start immediately once the party has been organized.\n.';
 
       if (args[1]) {
         callTime = `The dungeon run will start later around ${args[1]}\n.`;
@@ -237,7 +237,7 @@ client.on('message', message => {
     } else if (args[0] === 'purga') {
 
       let startTime = 'ASAP';
-      let callTime = 'The dungeon run will start immediately once party has been organized.\n.';
+      let callTime = 'The dungeon run will start immediately once the party has been organized.\n.';
 
       if (args[1]) {
         callTime = `The dungeon run will start later around ${args[1]}\n.`;
@@ -250,10 +250,26 @@ client.on('message', message => {
       message.channel.send(organize);
       message.channel.send(organize_list);
       message.channel.send(`.\n<@&${roleID}>`);
+    } else if (args[0] === 'vr') {
+
+      let startTime = 'ASAP';
+      let callTime = 'The dungeon run will start immediately once the party has been organized.\n.';
+
+      if (args[1]) {
+        callTime = `The dungeon run will start later around ${args[1]}\n.`;
+        startTime = args[1];
+      }
+
+      const organize = ` ${message.author} is organizing a Valhalla Ruins party!\nCopy and list out your name on the list below.\n.\n${callTime}`;
+      const organize_list = `\nValhalla Ruins - ${startTime}\n1. ${message.author}\n2.\n3.\n4.\n5.\n6.`;
+
+      message.channel.send(organize);
+      message.channel.send(organize_list);
+      message.channel.send(`.\n<@&${roleID}>`);
     } else if (args[0] === 'ec') {
 
       let startTime = 'ASAP';
-      let callTime = 'The dungeon run will start immediately once party has been organized.\n.';
+      let callTime = 'The dungeon run will start immediately once the party has been organized.\n.';
 
       if (args[1]) {
         callTime = `The dungeon run will start later around ${args[1]}\n.`;
@@ -269,7 +285,7 @@ client.on('message', message => {
     } else if (args[0] === 'et') {
 
       let startTime = 'ASAP';
-      let callTime = 'The dungeon run will start immediately once party has been organized.\n.';
+      let callTime = 'The dungeon run will start immediately once the party has been organized.\n.';
 
       if (args[1]) {
         callTime = `The dungeon run will start later around ${args[1]}\n.`;
