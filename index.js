@@ -65,7 +65,7 @@ client.on('message', message => {
       //  Set absent members
       let updatedMemberList = filterArray(memberList, CHA.members);
       for (const arrayItem of updatedMemberList) {
-        if (absentCount <= 50) {
+        if (absentCount <= 40) {
           absentArray = absentArray + '' + absentCount + '. ' + arrayItem[1].displayName + '\n';
         } else {
           absentArrayCont = absentArrayCont + '' + absentCount + '. ' + arrayItem[1].displayName + '\n';
@@ -120,20 +120,85 @@ client.on('message', message => {
 
   }
   else if (message.content === `${prefix}absent-nuke`) {
+    
     message.channel.send('Do you want me to destroy the phones of all the absent members? Yes/No');
+    
   } else if (message.content === `${prefix}party`) {
-    try {
+    
+    try {     
 
-      const selfParty = new MessageEmbed()
-        .setTitle('Debauchery Tea Party - Party List')
-        .setColor(0xff0000)
-        .setDescription('This is still under development and will be showing up proper results soon!');
+      let member1 = message.mentions.members.first() || message.member,
+        
+      user = member1.user;
 
-      message.channel.send(selfParty);
+      let userRoles = member1.roles.cache.map(r => r.name);
 
-      let userId = message.author.id;
+      let guildDivisions = [
+        'LUST - 1',
+        'LUST - 2',
+        'LUST - 3',
+        'LUST - 4',
+        'LUST - 5',
+        'LUST - 6',
+        'LUST - 7',
+        'LUST - 8',
+        'ENVY - 1',
+        'ENVY - 2',
+        'ENVY - 3',
+        'GREED - 1',
+        'GREED - 2',
+        'GREED - 3',
+        'CHAOS - 1',
+        'SLOTH - 1',
+        'SLOTH - 2'
+        
+      ];
 
+      const divisionName = userRoles.filter(r=> guildDivisions.includes(r));
+    
+      if( divisionName.length === 0 ){
+        
+        const total_record = new MessageEmbed()
+          .setTitle('Paradox • Party List')
+          .setThumbnail('https://i.imgur.com/kJWUdAs.png')
+          .setDescription('You are currently not assigned to any party')
+          .setImage('https://i.imgur.com/m0IweDf.jpg')
+          .setColor('RANDOM');
+        message.channel.send(total_record);
+        
+      } else {
 
+        let member_counter = 1;
+        let total_members = '\n';
+        let partyLeader = '';
+        const list = client.guilds.cache.get(message.guild.id);
+        
+        for (const member of list.members.cache) {
+        
+            if(member[1].roles.cache.map(r => r.name).includes(divisionName[0])){
+              total_members = total_members + '' + member_counter + '. ' + member[1].displayName + '\n';
+              member_counter++;
+
+              //check if the member is a party leader
+              if(member[1].roles.cache.map(r => r.name).includes('Party Leader')){
+                partyLeader =  member[1].displayName;        
+              }
+            }
+  
+        }
+
+        const total_record = new MessageEmbed()
+          .setTitle('Paradox • Party List')
+          .setThumbnail('https://i.imgur.com/kJWUdAs.png')
+          .addField('Division', divisionName[0], false)
+          .addField('Party Members', total_members, true)
+          .addField('\u200B', '\u200B', true)
+          .addField('Party Leader', partyLeader, true)
+          .setColor('RANDOM')
+          .setFooter('Reminder: Always remember your division names');
+        message.channel.send(total_record);
+        
+      }
 
     } catch (error) {
       console.log(error);
@@ -384,6 +449,8 @@ function filterArray(a, b) {
 
   return c;
 }
+
+
 
 const mySecret = process.env['disc_token']
 client.login(mySecret);
